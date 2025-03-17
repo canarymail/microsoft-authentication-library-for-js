@@ -595,6 +595,7 @@ export class ResponseHandler {
         requestId?: string
     ): Promise<AuthenticationResult> {
         let accessToken: string = Constants.EMPTY_STRING;
+        let refreshToken: string = Constants.EMPTY_STRING;
         let responseScopes: Array<string> = [];
         let expiresOn: Date | null = null;
         let extExpiresOn: Date | undefined;
@@ -629,6 +630,7 @@ export class ResponseHandler {
             } else {
                 accessToken = cacheRecord.accessToken.secret;
             }
+            refreshToken = cacheRecord.refreshToken?.secret || Constants.EMPTY_STRING;
             responseScopes = ScopeSet.fromString(
                 cacheRecord.accessToken.target
             ).asArray();
@@ -678,6 +680,7 @@ export class ResponseHandler {
             idToken: cacheRecord?.idToken?.secret || "",
             idTokenClaims: idTokenClaims || {},
             accessToken: accessToken,
+            refreshToken: refreshToken,
             fromCache: fromTokenCache,
             expiresOn: expiresOn,
             extExpiresOn: extExpiresOn,

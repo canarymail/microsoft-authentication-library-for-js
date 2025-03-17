@@ -14,6 +14,7 @@ import { AccountInfo } from "../account/AccountInfo.js";
  * - idToken                - Id token received as part of the response
  * - idTokenClaims          - MSAL-relevant ID token claims
  * - accessToken            - Access token or SSH certificate received as part of the response
+ * - refreshToken           - Refresh token received as part of the response
  * - fromCache              - Boolean denoting whether token came from cache
  * - expiresOn              - Javascript Date object representing relative expiration of access token
  * - extExpiresOn           - Javascript Date object representing extended relative expiration of access token in case of server outage
@@ -31,6 +32,7 @@ export type AuthenticationResult = {
     idToken: string;
     idTokenClaims: object;
     accessToken: string;
+    refreshToken: string;
     fromCache: boolean;
     expiresOn: Date | null;
     extExpiresOn?: Date;
